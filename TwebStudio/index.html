@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TWeb Studio | Engineering & Web Development</title>
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --bg-card: rgba(20, 20, 20, 0.8);
+            --gold-primary: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-glow: rgba(212, 175, 55, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Premium Gold Background Effects */
+        .glow-circle-1, .glow-circle-2 {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(50px);
+        }
+
+        .glow-circle-1 {
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            left: -200px;
+        }
+
+        .glow-circle-2 {
+            width: 800px;
+            height: 800px;
+            bottom: -300px;
+            right: -200px;
+        }
+
+        .grid-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            z-index: -2;
+        }
+
+        /* Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--gold-primary);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--gold-primary), #b8860b);
+            color: #000;
+            padding: 10px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 140px 20px 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--gold-light), var(--gold-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Tech Badges */
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            font-family: monospace;
+        }
+
+        /* Services Grid */
+        .services {
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 100px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 3px solid var(--gold-primary);
+            backdrop-filter: blur(10px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            border-color: var(--border-color);
+        }
+
+        .card h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3::before {
+            content: '/>';
+            color: var(--gold-primary);
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .tech-list {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+
+        .tech-list li {
+            margin-bottom: 6px;
+        }
+
+        .tech-list li::before {
+            content: '→ ';
+            color: var(--gold-primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(5, 5, 5, 0.9);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gold-primary);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-bg"></div>
+    <div class="glow-circle-1"></div>
+    <div class="glow-circle-2"></div>
+
+    <header>
+        <a href="#" class="logo">TWEB<span>STUDIO</span></a>
+        <!-- Correo actualizado en el botón de contacto -->
+        <a href="mailto:manuelehm14@mail.com" class="btn">Contact Us</a>
+    </header>
+
+    <section class="hero">
+        <h1>Engineering Premium <br><span>Web Experiences</span></h1>
+        <p>We architect, build, and deploy scalable web applications. From custom frontend interfaces to robust backend infrastructure, we deliver production-ready code for modern businesses.</p>
+        
+        <div class="tech-stack">
+            <span class="badge">React / Next.js</span>
+            <span class="badge">Node.js / Express</span>
+            <span class="badge">Vite / Webpack</span>
+            <span class="badge">CI/CD Pipelines</span>
+            <span class="badge">REST & GraphQL</span>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="card">
+            <h3>Frontend Engineering</h3>
+            <p>Creating pixel-perfect, highly interactive user interfaces focused on performance and seamless user experience.</p>
+            <ul class="tech-list">
+                <li>React, Vue & Angular</li>
+                <li>Tailwind CSS & SASS</li>
+                <li>State Management (Redux/Zustand)</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Backend Architecture</h3>
+            <p>Developing secure, scalable server-side applications and efficient database structures for complex data logic.</p>
+            <ul class="tech-list">
+                <li>Node.js & Python</li>
+                <li>PostgreSQL & NoSQL Databases</li>
+                <li>API Integration & Auth</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>DevOps & Cloud Hosting</h3>
+            <p>Automating build processes and deploying robust cloud infrastructure to ensure zero downtime.</p>
+            <ul class="tech-list">
+                <li>Vite & Webpack Build Tools</li>
+                <li>Docker Containerization</li>
+                <li>Continuous Deployment (CI/CD)</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 TWeb Studio LLC. All rights reserved.</p>
+        <!-- Correo actualizado en el footer -->
+        <p>enmanuel@twebstudio.com | Engineering Digital Solutions</p>
+        <div class="footer-links" style="margin-top: 20px;">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Service Level Agreement</a>
+        </div>
+    </footer>
+
+</body>
+</html>
